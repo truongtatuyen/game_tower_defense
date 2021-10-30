@@ -14,7 +14,7 @@ let frame = 0;
 let gameOver = false;
 let isWin = false;
 let score = 0;
-let winningScore = 10;
+let winningScore = 500;
 
 const gameGrid = [];
 const defenders = [];
