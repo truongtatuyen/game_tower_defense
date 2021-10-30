@@ -10,7 +10,7 @@ document.getElementsByTagName("body")[0].style.cursor = "url('./src/imgs/cur1.cu
 const cellSize = 100;
 const cellGap = 3;
 
-let numberOfResources = 200;
+let numberOfResources = 150;
 let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
@@ -434,7 +434,7 @@ class Resource {
     }
 }
 function handleResources(){
-    if(frame % 500 === 0 && score < winningScore){
+    if(frame % 600 === 0 && score < winningScore){
         resources.push(new Resource());
     }
     for (let i = 0; i < resources.length; i++) {
@@ -463,7 +463,7 @@ function handleGameStatus() {
     ctx.font = '45px Amatic SC';
     ctx.fillText(`Score: ${score}`, 20, 45);
     ctx.fillText(`Resources: ${numberOfResources}`, 20, 85);
-    ctx.fillText(`Next : ${winningScore}`, 600, 55);
+    ctx.fillText(`WIN-SCORE : ${winningScore}`, 600, 70);
 
     if(score >= winningScore /*&& enemies.length === 0*/){
         isWin = true;
