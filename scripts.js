@@ -106,7 +106,7 @@ class Projectile {
         this.y = y - 20;
         this.width = 35;
         this.height = 35;
-        this.power = 20;
+        this.power = 25;
         this.speed = 5.5;
 
         //for sprite image
@@ -133,7 +133,10 @@ class Projectile {
         // ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
         //s(sources):position in image 
         //d(destination):position want to place
+        ctx.shadowColor = 'white';
+        ctx.shadowBlur = 5;
         ctx.drawImage(this.projectileType, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+        ctx.shadowBlur = 0;
     }
 }
 function handleProjectiles() {
@@ -213,7 +216,7 @@ class Defender {
         }
         if(this.shooting){
             this.timer++;
-            if(this.timer % 60 === 0){//born projectile here
+            if(this.timer % 75 === 0){//born projectile here
                 projectiles.push(new Projectile(this.x + 70, this.y + 50));
             }
         }else{
