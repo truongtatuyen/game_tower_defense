@@ -8,8 +8,6 @@ document.getElementsByTagName("body")[0].style.cursor = "url('./src/imgs/cur1.cu
 
 //global variables
 const cellSize = 100;
-const cellGap = 3;
-
 let numberOfResources = 150;
 let enemiesInterval = 600;
 let frame = 0;
