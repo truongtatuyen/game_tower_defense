@@ -14,7 +14,7 @@ let frame = 0;
 let gameOver = false;
 let isWin = false;
 let score = 0;
-let winningScore = 500;
+let winningScore = 10;
 
 const gameGrid = [];
 const defenders = [];
@@ -467,7 +467,20 @@ function handleGameStatus() {
         isWin = true;
     }
 }
+function renewGame() {
+    setTimeout(() => {
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'black';
+        ctx.fillText('Press "R" to Retry ', canvas.width / 2, canvas.height / 2 + 200);
 
+        document.addEventListener("keyup", function(event) {
+            if (event.keyCode === 82) {
+                event.preventDefault();
+                location.reload();
+            }
+        });
+    }, 1000);
+}
 //UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES
 
 
@@ -496,12 +509,14 @@ function animate() {
             ctx.font = '80px Amatic SC';
             ctx.fillText('LEVEL COMPLETE', 130, 300);
             ctx.fillText(`You win with ${score} points!`, 150, 370);
+            renewGame();
         }
     }else{// GAMEOVER handles
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'black';
         ctx.font = '120px Amatic SC';
         ctx.fillText('GAME OVER', 135, 330);
+        renewGame();
     }
 
 }
