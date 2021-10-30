@@ -9,7 +9,7 @@ document.getElementsByTagName("body")[0].style.cursor = "url('./src/imgs/cur1.cu
 //global variables
 const cellSize = 100;
 let numberOfResources = 150;
-let enemiesInterval = 600;
+let enemiesInterval = 900;
 let frame = 0;
 let gameOver = false;
 let isWin = false;
@@ -34,8 +34,8 @@ const mouse = {
 let canvasPosition = canvas.getBoundingClientRect();
 // console.log(canvasPosition);
 canvas.addEventListener('mousemove', (e) => {
-    mouse.x = e.x - canvasPosition.left - 200;
-    mouse.y = e.y - canvasPosition.top - 150;
+    mouse.x = e.x - canvasPosition.left;
+    mouse.y = e.y - canvasPosition.top;
 });
 canvas.addEventListener('mouseleave', () => {
     mouse.y = undefined;
@@ -106,8 +106,8 @@ class Projectile {
         this.y = y - 20;
         this.width = 35;
         this.height = 35;
-        this.power = 25;
-        this.speed = 9;
+        this.power = 20;
+        this.speed = 5.5;
 
         //for sprite image
         this.projectileType = projectile1;
@@ -201,7 +201,10 @@ class Defender {
         // ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
         //s(sources):position in image 
         //d(destination):position want to place
+        ctx.shadowColor = 'blue';
+        ctx.shadowBlur = 5;
         ctx.drawImage(this.defenderType, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+        ctx.shadowBlur = 0;
     }
     update(){
         if(frame % 12 === 0){// delay for animation
@@ -210,7 +213,7 @@ class Defender {
         }
         if(this.shooting){
             this.timer++;
-            if(this.timer % 70 === 0){//born projectile here
+            if(this.timer % 60 === 0){//born projectile here
                 projectiles.push(new Projectile(this.x + 70, this.y + 50));
             }
         }else{
@@ -323,7 +326,7 @@ class Enemy {
         this.y = verticalPosition + 2;
         this.width = cellSize - 10;
         this.height = cellSize - 10;
-        this.speed = Math.random() * 0.2 + 0.9; // Change speed here
+        this.speed = Math.random() * 0.2 + 0.7; // Change speed here
         this.movement = this.speed;
         this.health = 100;
         this.maxHealth = this.health;
@@ -353,7 +356,10 @@ class Enemy {
         // ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
         //s(sources):position in image 
         //d(destination):position want to place
+        ctx.shadowColor = 'red';
+        ctx.shadowBlur = 5;
         ctx.drawImage(this.enemyType, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+        ctx.shadowBlur = 0;
     }
 }
 function handleEnemies() {
@@ -384,7 +390,7 @@ function handleEnemies() {
         let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + 3;
         enemies.push(new Enemy(verticalPosition));
         enemyPositions.push(verticalPosition);
-        if(enemiesInterval > 120) enemiesInterval -= 105;
+        if(enemiesInterval > 120) enemiesInterval -= 110;
         // console.log(enemyPositions);
     }
 }
@@ -428,7 +434,10 @@ class Resource {
         // ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
         //s(sources):position in image 
         //d(destination):position want to place
+        ctx.shadowColor = 'gold';
+        ctx.shadowBlur = 30;
         ctx.drawImage(this.srcType, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+        ctx.shadowBlur = 0;
     }
 }
 function handleResources(){
@@ -481,12 +490,22 @@ function renewGame() {
         });
     }, 1000);
 }
+//fix mouse position when resize browser
+function fixResize() {
+    window.addEventListener('mouseover', ()=>{
+        canvasPosition = canvas.getBoundingClientRect();
+    });
+    window.addEventListener('resize', ()=>{
+        canvasPosition = canvas.getBoundingClientRect();
+    });
+}
 //UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES UTILITIES
 
 
 //animate loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    fixResize();
     drawControlBar();
     drawMainBG();
     handleGameGrid();
@@ -521,11 +540,13 @@ function animate() {
 
 }
 
+
 //to play game
 const btnStart = document.getElementById('startGame');
 btnStart.addEventListener('click', ()=>{
     btnStart.classList.add('hidden');
     document.getElementById('canvas1').classList.remove('hidden');
+    fixResize();
     animate();
 });
 
@@ -543,7 +564,3 @@ function collision(first, second) {
     }
 }
 
-//fix mouse position when resize browser
-window.addEventListener('resize', ()=>{
-    canvasPosition = canvas.getBoundingClientRect();
-});
