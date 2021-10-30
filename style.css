@@ -1,6 +1,36 @@
 body{
-    background-color: black;
+    background-image: url('./src/imgs/body_bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+.hidden{display: none!important;}
+.bnz-btn-02 {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto 0;
+    position: relative;
+    top: 30%;
+    z-index: 999;
+    font-family: 'Amatic SC';
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 100px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .bnz-btn-02:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
 #canvas1{
     position: absolute;
     top: 50%;
@@ -10,4 +40,6 @@ body{
     height: 600px;
     background-color: #fff;
     font-family: 'Amatic SC', cursive;
+    border-radius : 5px;
+    box-shadow: 0px 0px 10px 5px greenyellow;
 }
