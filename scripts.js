@@ -325,7 +325,7 @@ class Enemy {
         this.y = verticalPosition + 2;
         this.width = cellSize - 10;
         this.height = cellSize - 10;
-        this.speed = Math.random() * 0.2 + 1; // Change speed here
+        this.speed = Math.random() * 0.2 + 0.9; // Change speed here
         this.movement = this.speed;
         this.health = 100;
         this.maxHealth = this.health;
@@ -386,7 +386,7 @@ function handleEnemies() {
         let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + 3;
         enemies.push(new Enemy(verticalPosition));
         enemyPositions.push(verticalPosition);
-        if(enemiesInterval > 120) enemiesInterval -= 110;
+        if(enemiesInterval > 120) enemiesInterval -= 105;
         // console.log(enemyPositions);
     }
 }
