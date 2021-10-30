@@ -108,8 +108,8 @@ class Projectile {
         this.y = y - 20;
         this.width = 35;
         this.height = 35;
-        this.power = 50;
-        this.speed = 10;
+        this.power = 25;
+        this.speed = 9;
 
         //for sprite image
         this.projectileType = projectile1;
